@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>爱游戏 · 用户指南与场景介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f6fbfa;
+            color: #1d2d2a;
+            line-height: 1.6;
+            padding: 0 1rem;
+        }
+
+        .page {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 2rem 0 3rem;
+        }
+
+        /* hero – 杂志风格大标题 */
+        .magazine-hero {
+            background: linear-gradient(145deg, #0a2e2c 0%, #1b4d47 100%);
+            margin: 1.2rem -1rem 2.5rem -1rem;
+            padding: 3.2rem 1.8rem;
+            border-radius: 0 0 48px 48px;
+            color: #ebf7f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .magazine-hero::after {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -40px;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle, rgba(60, 195, 170, 0.18) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .magazine-hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            max-width: 80%;
+        }
+
+        .magazine-hero .sub {
+            font-size: 1.05rem;
+            margin-top: 1.2rem;
+            opacity: 0.8;
+            font-weight: 350;
+            border-left: 3px solid #3dc3aa;
+            padding-left: 1rem;
+            max-width: 70%;
+        }
+
+        /* 背景说明区 — 网格卡片变体 */
+        .bg-note {
+            background: #ffffffdd;
+            backdrop-filter: blur(2px);
+            border: 1px solid #cde9e3;
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.8rem;
+            box-shadow: 0 6px 18px rgba(0, 40, 30, 0.04);
+        }
+
+        .bg-note p {
+            font-size: 1.05rem;
+            color: #1f3e3a;
+            margin-bottom: 0.6rem;
+        }
+
+        .bg-note strong {
+            color: #0d584b;
+            font-weight: 500;
+        }
+
+        /* 三段自然介绍 – 卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.6rem;
+            margin: 2.2rem 0 2.6rem;
+        }
+
+        .card-item {
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem 1.6rem 2rem;
+            box-shadow: 0 2px 12px rgba(60, 140, 120, 0.04);
+            border: 1px solid #d2ece4;
+            transition: box-shadow 0.2s;
+        }
+
+        .card-item:hover {
+            box-shadow: 0 6px 24px rgba(0, 80, 60, 0.06);
+        }
+
+        .card-item .card-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            background: #daf2ea;
+            color: #0a4a3f;
+            padding: 0.2rem 0.9rem;
+            border-radius: 30px;
+            margin-bottom: 0.9rem;
+            font-weight: 500;
+        }
+
+        .card-item h3 {
+            font-size: 1.4rem;
+            font-weight: 470;
+            color: #092f2a;
+            margin-bottom: 0.8rem;
+            letter-spacing: -0.01em;
+        }
+
+        .card-item p {
+            color: #2d4a45;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-item .highlight {
+            color: #0a6758;
+            font-weight: 470;
+        }
+
+        /* 页尾提示区 */
+        .footer-tip {
+            background: #e5f3ef;
+            border-radius: 36px;
+            padding: 2rem 2rem 2.2rem;
+            margin-top: 2.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.2rem;
+            border: 1px solid #bcd9d2;
+        }
+
+        .footer-tip .tip-text {
+            flex: 2;
+            min-width: 220px;
+            font-size: 1rem;
+            color: #1a3b35;
+        }
+
+        .footer-tip .tip-text a {
+            color: #0f5f51;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 2px solid #3dc3aa;
+            padding-bottom: 0.1rem;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .footer-tip .tip-text a:hover {
+            border-bottom-color: #0a4a3f;
+            color: #062f29;
+        }
+
+        .footer-tip .meta-note {
+            font-size: 0.9rem;
+            color: #3d6b62;
+            background: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid #a3cec2;
+            white-space: nowrap;
+        }
+
+        /* 小 FAQ 摘要（点缀） */
+        .faq-mini {
+            margin: 2.2rem 0 0.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.6rem;
+            background: #f0faf6;
+            padding: 1.2rem 1.8rem;
+            border-radius: 40px;
+        }
+
+        .faq-mini .q-item {
+            font-size: 0.95rem;
+            color: #1b423c;
+        }
+
+        .faq-mini .q-item span {
+            background: #b7dfd3;
+            border-radius: 30px;
+            padding: 0.1rem 0.6rem;
+            margin-right: 0.3rem;
+            font-weight: 500;
+            color: #04332b;
+        }
+
+        /* 响应式 */
+        @media (min-width: 640px) {
+            .card-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .magazine-hero h1 {
+                font-size: 3.2rem;
+                max-width: 70%;
+            }
+
+            .magazine-hero .sub {
+                max-width: 55%;
+            }
+        }
+
+        @media (min-width: 920px) {
+            .card-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            .magazine-hero {
+                padding: 4rem 3rem;
+                margin: 1.2rem -2rem 3rem -2rem;
+            }
+
+            .page {
+                padding: 2.5rem 0 4rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .magazine-hero h1 {
+                font-size: 2rem;
+                max-width: 100%;
+            }
+
+            .magazine-hero .sub {
+                max-width: 100%;
+            }
+
+            .footer-tip {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 首页横幅 hero 杂志感 -->
+    <div class="magazine-hero">
+        <h1>爱游戏 · 从意图到界面</h1>
+        <div class="sub">快速定位工具的用途，不是每一页都需要反复解释。这里是关于场景与操作的一点记录。</div>
+    </div>
+
+    <!-- 背景说明：为什么用户会找到这个页面 -->
+    <div class="bg-note">
+        <p><strong>背景</strong> 很多人在打开一个陌生面板时，第一反应是：<em>“这个页面是做什么的？我能从这里得到什么？”</em> 出于这种直觉，我们整理了以下三部分介绍。它们不代替手册，但能帮你更快地建立方向感。</p>
+        <p style="margin-bottom:0;">无论你是初次接触还是偶尔使用，<strong>爱游戏</strong> 所关联的界面都围绕体育数据与常用操作展开。下面三段内容分别从 <strong>识别栏目、理解数据、操作节奏</strong> 三个侧面切入。</p>
+    </div>
+
+    <!-- 三段自然介绍：网格卡片，每段侧重不同 -->
+    <div class="card-grid">
+        <div class="card-item">
+            <span class="card-label">01 · 栏目识别</span>
+            <h3>左侧还是上方？</h3>
+            <p>进入面板后，第一眼看到的往往是导航分组。通常左侧会列出主要功能区块，例如赛事筛选、统计概览与设置入口。你不必记住所有名称，只需知道：<span class="highlight">每一个图标背后都是一个独立工具</span>，而不是堆砌的链接。</p>
+            <p>花十秒钟横向扫视，就能对整体布局有概念。</p>
+        </div>
+        <div class="card-item">
+            <span class="card-label">02 · 数据理解</span>
+            <h3>数字与状态</h3>
+            <p>页面中大量出现比分、时间、队伍简称和进度条——这并非装饰。<span class="highlight">爱游戏</span> 所呈现的体育数据通常按联赛或赛事阶段分组。你可以把每一行看作一个“卡片单元”，包含当前状态、关键统计与操作入口。</p>
+            <p>如果某个数字旁边有淡蓝色标记，意味着它支持展开详情。</p>
+        </div>
+        <div class="card-item">
+            <span class="card-label">03 · 操作节奏</span>
+            <h3>点击与反馈</h3>
+            <p>很多操作并不需要立刻决定。你可以在面板中自由切换视图、调整时间范围或筛选特定联赛。每一个按钮的反馈都经过设计：加载状态、成功提示或简洁的错误说明。</p>
+            <p>熟悉操作节奏后，日常使用会变得非常自然——这更像是浏览一份动态杂志，而不是复杂的后台。</p>
+        </div>
+    </div>
+
+    <!-- 简洁 FAQ 摘要点缀（与页尾呼应） -->
+    <div class="faq-mini">
+        <div class="q-item"><span>?</span> 面板支持深色模式吗？—— 目前默认为浅色，未来版本会加入切换。</div>
+        <div class="q-item"><span>?</span> 数据多久刷新？—— 每 30 秒增量更新，关键场次实时推送。</div>
+    </div>
+
+    <!-- 页尾访问提示：自然嵌入链接，不出现“进入/点击/官网”等指令词 -->
+    <div class="footer-tip">
+        <div class="tip-text">
+            如果你已经找到了自己需要的功能区域，可以直接使用 <a href="https://ayx-panel-sports.com">爱游戏</a> 继续操作。界面中的每个模块都对应一个独立场景，花几分钟浏览往往比记忆菜单更高效。
+        </div>
+        <div class="meta-note">· 杂志式指引 · v1.0</div>
+    </div>
+
+    <!-- 最后一句话，叙述感收尾，不额外加链接 -->
+    <p style="margin-top: 1.8rem; font-size: 0.9rem; color: #527068; text-align: center; border-top: 1px solid #d3e6df; padding-top: 1.2rem;">
+        以上介绍基于常见面板布局整理，具体功能以实际页面为准。
+    </p>
+
+</div>
+</body>
+</html>
